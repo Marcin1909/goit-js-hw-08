@@ -64,11 +64,4 @@ const images = [
     },
   ];
 
-  const images = document.querySelectorAll('.gallery-image');
-
-  images.forEach((image) => {
-    image.style.position = 'absolute';
-    image.style.width = '360px';
-    image.style.height = '200px';
-  });
     
