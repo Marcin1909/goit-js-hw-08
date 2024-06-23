@@ -64,4 +64,13 @@ const images = [
     },
   ];
 
+  const gallery = document.querySelector('ul.gallery');
+
+  gallery.addEventListener('click', (event) => {
+    if (event.target.tagName === 'IMG') {
+      const largeImageURL = event.target.dataset.original;
+      console.log('Large image URL:', largeImageURL);
+    }
+  });
+
     
