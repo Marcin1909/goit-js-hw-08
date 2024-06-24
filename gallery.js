@@ -73,4 +73,23 @@ const images = [
     }
   });
 
+  import * as basicLightbox from 'basiclightbox';
+
+  const galleryImages = document.querySelectorAll('a[data-lightbox]');
+  galleryImages.forEach((image) => {
+      image.addEventListener('click', (event) => {
+          event.preventDefault();
+          const imageUrl = event.target.getAttribute('href');
+          const imageTitle = event.target.getAttribute('data-title');
+  
+          const instance = basicLightbox.create(`
+              <div class="modal">
+                  <img src="${imageUrl}" alt="${imageTitle}">
+                  <p>${imageTitle}</p>
+              </div>
+          `);
+  
+          instance.show();
+      });
+    });
     
