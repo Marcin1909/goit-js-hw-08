@@ -92,4 +92,17 @@ const images = [
           instance.show();
       });
     });
+
+    const modal = document.querySelector('.modal');
+
+    function handleKeyPress(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    }
     
+    function closeModal() {
+      modal.classList.remove('open');
+    }
+
+    modal.addEventListener('keydown', handleKeyPress);
