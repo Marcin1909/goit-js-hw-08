@@ -66,6 +66,16 @@ const images = [
 
   const gallery = document.querySelector('ul.gallery');
 
+  const imageElements = images.map((image) => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `<a href="${image.original}" data-ligthbox data-tittle="${image.description}">
+    <img src="${image.preview}" alt="${image.description}" data-original="${image.original}"> 
+    </a>`;
+    return listItem;
+  });
+
+  gallery.append(...imageElements);
+
   gallery.addEventListener('click', (event) => {
     if (event.target.tagName === 'IMG') {
       const largeImageURL = event.target.dataset.original;
@@ -73,27 +83,15 @@ const images = [
     }
   });
 
-  import * as basicLightbox from 'basiclightbox';
-
-  const galleryImages = document.querySelectorAll('a[data-lightbox]');
-  galleryImages.forEach((image) => {
-      image.addEventListener('click', (event) => {
-          event.preventDefault();
-          const imageUrl = event.target.getAttribute('href');
-          const imageTitle = event.target.getAttribute('data-title');
-  
-          const instance = basicLightbox.create(`
-              <div class="modal">
-                  <img src="${imageUrl}" alt="${imageTitle}">
-                  <p>${imageTitle}</p>
-              </div>
-          `);
-  
-          instance.show();
-      });
-    });
-
-    const modal = document.querySelector('.modal');
+ function openLigthbox(imageURL, imageTittle) {
+  const instance = basicLigthbox.create(`
+    <div class="modal">
+    <img src="${imageURL}" alt="${imageTittle}">
+    <p>${imageTittle}</p>
+    </div>
+    `);
+    instance.show();
+ }
 
     function handleKeyPress(event) {
       if (event.key === 'Escape') {
