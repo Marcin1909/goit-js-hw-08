@@ -76,31 +76,31 @@ const images = [
 
   gallery.append(...imageElements);
 
-  gallery.addEventListener('click', (event) => {
-    if (event.target.tagName === 'IMG') {
-      const largeImageURL = event.target.dataset.original;
-      console.log('Large image URL:', largeImageURL);
-    }
-  });
-
- function openLigthbox(imageURL, imageTittle) {
-  const instance = basicLigthbox.create(`
-    <div class="modal">
-    <img src="${imageURL}" alt="${imageTittle}">
-    <p>${imageTittle}</p>
-    </div>
+  gallery.addEventListener('click', openLightbox);
+    
+  const instance = basicLightbox.create(`
+    <img src="" width="1280">
     `);
-    instance.show();
+
+ function openLightbox(event) {
+  event.preventDefault();
+  if (event.target.tagName === 'IMG') {
+    const largeImageURL = event.target.dataset.original;
+    instance.element().querySelector("img").src = largeImageURL;
+    console.log('Large image URL:', largeImageURL);
+  }
+  instance.show();
  }
 
-    function handleKeyPress(event) {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    }
-    
-    function closeModal() {
-      modal.classList.remove('open');
-    }
+ function handleKeyPress(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+}
 
-    modal.addEventListener('keydown', handleKeyPress);
+function closeModal() {
+  modal.classList.remove('open');
+}
+
+modal.addEventListener('keydown', handleKeyPress)
+    
