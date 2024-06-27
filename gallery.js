@@ -92,15 +92,12 @@ const images = [
   instance.show();
  }
 
- function handleKeyPress(event) {
+ window.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
-    closeModal();
+    instance.close();
   }
-}
+ });
 
-function closeModal() {
-  modal.classList.remove('open');
-}
+ gallery.addEventListener('click', openLightbox);
 
-modal.addEventListener('keydown', handleKeyPress)
     
