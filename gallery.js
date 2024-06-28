@@ -100,4 +100,5 @@ const images = [
 
  gallery.addEventListener('click', openLightbox);
 
+
     
